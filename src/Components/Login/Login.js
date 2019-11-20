@@ -73,7 +73,7 @@ export default class Login extends React.Component {
       <div id="container">
         <form>
           <label>
-            Username:
+            Email:
             <input
               name="email"
               type="input"

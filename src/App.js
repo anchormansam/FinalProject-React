@@ -3,6 +3,7 @@ import "./App.css";
 import Login from "./Components/Login/Login";
 import Logout from "./Components/Logout/Logout";
 import UserCard from "./Components/UserCard/UserCard";
+import Register from "./Components/Register/Register";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +22,10 @@ class App extends React.Component {
     return (
       <React.Fragment>
         {this.state.token === "" ? (
-          <Login something={this.setTokenState} />
+          <React.Fragment>
+            <Login something={this.setTokenState} />
+            <Register />
+          </React.Fragment>
         ) : (
           <React.Fragment>
             <UserCard token={this.state.token} />
