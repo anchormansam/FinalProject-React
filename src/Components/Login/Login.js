@@ -14,7 +14,6 @@ export default class Login extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.getToken = this.getToken.bind(this);
   }
 
   handleInputChange(event) {
@@ -30,41 +29,24 @@ export default class Login extends React.Component {
     }));
   }
 
-  getToken() {
-    var tokenKey = localStorage.getItem("token");
-
-    if (tokenKey && tokenKey.length > 0) {
-      tokenKey = JSON.parse(tokenKey);
-    } else {
-      localStorage.setItem("token", JSON.stringify(""));
-      tokenKey = JSON.parse(localStorage.getItem("token"));
-    }
-
-    this.setState({ token: tokenKey });
-    this.props.something(this.state.token);
-  }
-  componentDidMount() {
-    this.getToken();
-  }
   handleClick(event) {
     axios
       .post("http://127.0.0.1:8000/api/login", this.state.credentials)
       .then(res => {
         const d = res.data.data;
 
-        
         this.setState({
           token: d.token,
           user: d.user,
           profile: d.user_profile
         });
-        
+
         localStorage.setItem("token", JSON.stringify(this.state.token));
         localStorage.setItem("user", JSON.stringify(this.state.user));
         localStorage.setItem("profile", JSON.stringify(this.state.profile));
-        this.props.something(d.token);
+        this.props.setToken(d.token);
       });
-      
+
     event.preventDefault();
   }
 
@@ -91,7 +73,7 @@ export default class Login extends React.Component {
               onChange={this.handleInputChange}
             />
           </label>
-          <button onClick={e => this.handleClick(e)}>Submit</button>
+         
         </form>
       </div>
     );

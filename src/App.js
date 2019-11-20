@@ -1,9 +1,6 @@
 import React from "react";
 import "./App.css";
-import Login from "./Components/Login/Login";
-import Logout from "./Components/Logout/Logout";
-import UserCard from "./Components/UserCard/UserCard";
-import Register from "./Components/Register/Register";
+import HeaderMenu from "./Components/Navbar/HeaderMenu";
 
 class App extends React.Component {
   constructor(props) {
@@ -12,27 +9,28 @@ class App extends React.Component {
       token: ""
     };
     this.setTokenState = this.setTokenState.bind(this);
+    this.getToken = this.getToken.bind(this);
   }
 
   setTokenState(token) {
     this.setState({ token: token });
   }
 
+  getToken() {
+    var tokenKey = localStorage.getItem("token");
+    if (tokenKey && tokenKey.length > 0) {
+      tokenKey = JSON.parse(tokenKey);
+    } else {
+      localStorage.setItem("token", JSON.stringify(""));
+      tokenKey = JSON.parse(localStorage.getItem("token"));
+    }
+
+    this.setTokenState(tokenKey);
+  }
+
   render() {
     return (
-      <React.Fragment>
-        {this.state.token === "" ? (
-          <React.Fragment>
-            <Login something={this.setTokenState} />
-            <Register />
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <UserCard token={this.state.token} />
-            <Logout token={this.state.token} setToken={this.setTokenState} />
-          </React.Fragment>
-        )}
-      </React.Fragment>
+      <HeaderMenu token={this.state.token} setToken={this.setTokenState} />
     );
   }
 }
