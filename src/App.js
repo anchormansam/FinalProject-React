@@ -1,9 +1,7 @@
 import React from "react";
 import "./App.css";
-// import HeaderMenu from "./Components/Navbar/HeaderMenu";
-import Register from "./Components/Register/Register";
-import Login from "./Components/Login/Login";
-import Logout from "./Components/Logout/Logout";
+import HeaderMenuNav from "./Components/Navbar/NewHeaderMenu";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -37,21 +35,15 @@ class App extends React.Component {
     this.setTokenState(tokenKey);
   }
 
+
   render() {
     return (
-      // <HeaderMenu token={this.state.token} setToken={this.setTokenState} />
-      <React.Fragment>
-        {!this.state.token ? (
-          <>
-           {this.state.toggleLogin ? <Login setToken={this.setTokenState} />
-            :<Register />}
-            <button onClick={this.setLogin}>login/register</button>
-          </>
-        ) : (
-          <Logout setToken={this.setTokenState} token={this.props.token} />
-        )}
-      </React.Fragment>
-    );
+    
+
+        <HeaderMenuNav setTokenState={this.setTokenState} setLogin={this.setLogin} getToken={this.getToken} parentState={this.state}/>
+        
+      
+     )
   }
 }
 

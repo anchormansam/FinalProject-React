@@ -12,24 +12,25 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
-import LoginModal from "../Modal/Modal"
+import LoginModal from "../Modal/UpdatedModal";
 
-class HeaderMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state={
-      isOpen: false
-    }
-    this.updateState=this.updateState.bind(this);
-  }
-  updateState(){
-    // const [isOpen, setIsOpen] = useState(false);
-    // const toggle = () => setIsOpen(!this.state.isOpen);
-  }
+class HeaderMenuNav extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={
+          isOpen: false
+        }
+        this.updateState=this.updateState.bind(this);
+      }
+      updateState(){
+        const [isOpen, setIsOpen] = useState(false);
+        const toggle = () => setIsOpen(!this.state.isOpen);
+      }
 
-  render() {
-    return (
-      <div>
+
+    render() {
+        return ( 
+        <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">BangAChain</NavbarBrand>
           <NavbarToggler onClick={this.updateState} />
@@ -45,8 +46,8 @@ class HeaderMenu extends React.Component {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
             
-                  <LoginModal setToken={this.props.setToken} token={this.props.token}
-                    
+                <LoginModal setTokenState={this.props.setTokenState} setLogin={this.props.setLogin} getToken={this.props.getToken} parentState={this.props.parentState}
+                         
               />
               </UncontrolledDropdown>
             </Nav>
@@ -54,8 +55,9 @@ class HeaderMenu extends React.Component {
         </Navbar>
         
       </div>
-    );
-  }
+        );
+      }
+
 }
 
-export default HeaderMenu;
+export default HeaderMenuNav;

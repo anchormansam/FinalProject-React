@@ -7,31 +7,48 @@ export default class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          name: '',
-          email: '',
-          password: '',
-          password_verify: '',
+          credentials: {
+            email:'',
+            password:'',
+            name:'',
+          },
+          token: '',
+          user: null,
         }
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleInputChange(event) {
+      const target = event.target;
+      const value = target.value;
+      const name = target.name;
+  
+      this.setState(prevState => ({
+        credentials: {
+          ...prevState.credentials,
+          [name]: value
+        }
+      }));
     }
 
     handleClick(event){
         axios
-      .post("http://127.0.0.1:8000/api/register", this.state)
+      .post("http://127.0.0.1:8000/api/register_new", this.state.credentials)
       .then(res => {
         const d = res.data.data;
 
-        
         this.setState({
           token: d.token,
-          email: d.email,
-          password: d.password
+          user: d.user, 
         });
 
         
         localStorage.setItem("token", JSON.stringify(this.state.token));
-        localStorage.setItem("email", JSON.stringify(this.state.email));
-        localStorage.setItem("password", JSON.stringify(this.state.password));
-        this.props.something(d.token);
+        localStorage.setItem("name", JSON.stringify(this.state.credentials.name));
+        localStorage.setItem("user", JSON.stringify(this.state.user));
+        localStorage.setItem("email", JSON.stringify(this.state.credentials.email));
+        localStorage.setItem("password", JSON.stringify(this.state.credentials.password));
+        this.props.setToken(d.token);
       });
       
     event.preventDefault();
@@ -44,9 +61,9 @@ export default class Register extends React.Component {
                 <label>
                   Name:
                   <input
-                    name="email"
+                    name="name"
                     type="input"
-                    onChange = {(event, newValue) => this.setState({name: newValue})} 
+                    onChange = {this.handleInputChange} 
                   />
                 </label>
                 <br />
@@ -55,7 +72,7 @@ export default class Register extends React.Component {
                   <input
                     name="email"
                     type="input"
-                    onChange = {(event, newValue) => this.setState({email: newValue})} 
+                    onChange = {this.handleInputChange} 
                   />
                 </label>
                 <br />
@@ -64,15 +81,14 @@ export default class Register extends React.Component {
                   <input
                     name="password"
                     type="input"
-                    onChange={(event, newValue) => this.setState({password: newValue})} 
+                    onChange= {this.handleInputChange} 
                   />
                 </label>
                 <label>
                   Password Verify:
                   <input
-                    name="password"
-                    type="input"
-                    onChange={(event, newValue) => this.setState({password_verify: newValue})} 
+                    name="password_verify"
+                    type="input" 
                   />
                 </label>
                 <button onClick={e => this.handleClick(e)}>Register</button>
