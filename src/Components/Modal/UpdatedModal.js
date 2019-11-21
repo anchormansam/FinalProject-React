@@ -10,7 +10,7 @@ class LoginModal extends React.Component {
   }
 
   setLogin(token) {
-    this.props.setTokenState(token);
+    this.props.setSession(token);
   }
 
   render() {
@@ -50,15 +50,15 @@ class LoginModal extends React.Component {
         {!this.props.parentState.token ? (
           <>
             {this.props.parentState.toggleLogin ? (
-              <Login setToken={this.props.setTokenState} />
+              <Login setToken={this.props.setSession} />
               ) : (
-                <Register setToken={this.props.setTokenState}/>
+                <Register setToken={this.props.setSession}/>
                 )}
             <button onClick={this.props.setLogin}>login/register</button>
           </>
         ) : (
           <Logout
-          setToken={this.props.setTokenState}
+          setToken={this.props.setSession}
           token={this.props.parentState.token}
           />
           )}

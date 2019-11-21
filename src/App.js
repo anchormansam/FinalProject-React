@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import HeaderMenuNav from "./Components/Navbar/NewHeaderMenu";
+import CreateProfile from "./Components/Profile/Profile";
 
 
 class App extends React.Component {
@@ -8,20 +9,26 @@ class App extends React.Component {
     super(props);
     this.state = {
       token: "",
+      user: {},
+      profile: {},
+      user_bag: {},
       toggleLogin: true
     };
-    this.setTokenState = this.setTokenState.bind(this);
+    this.setSession = this.setSession.bind(this);
     this.getToken = this.getToken.bind(this);
     this.setLogin = this.setLogin.bind(this);
   }
 
-  setTokenState(token) {
-    this.setState({ token: token });
+  setSession(token, user, profile) {
+    this.setState({ 
+      token: token,
+      user: user,
+      profile: profile
+    });
   }
   setLogin(){
     this.setState({ toggleLogin: !this.state.toggleLogin });
-
-  }
+}
 
   getToken() {
     var tokenKey = localStorage.getItem("token");
@@ -32,17 +39,17 @@ class App extends React.Component {
       tokenKey = JSON.parse(localStorage.getItem("token"));
     }
 
-    this.setTokenState(tokenKey);
+    this.setSession(tokenKey);
   }
 
 
   render() {
     return (
-    
-
-        <HeaderMenuNav setTokenState={this.setTokenState} setLogin={this.setLogin} getToken={this.getToken} parentState={this.state}/>
-        
+      <React.Fragment>
+        <HeaderMenuNav setSession={this.setSession} setLogin={this.setLogin} getToken={this.getToken} parentState={this.state}/>
+        <CreateProfile token={this.state.token}/>
       
+      </React.Fragment>
      )
   }
 }
