@@ -29,8 +29,8 @@ export default class Logout extends React.Component {
     localStorage.setItem("token", JSON.stringify(""));
     localStorage.setItem("user", JSON.stringify(""));
     localStorage.setItem("profile", JSON.stringify(""));
-    event.preventDefault();
     this.props.setToken("");
+    event.preventDefault();
   }
 
   render() {

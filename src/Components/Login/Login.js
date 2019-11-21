@@ -73,7 +73,7 @@ export default class Login extends React.Component {
               onChange={this.handleInputChange}
             />
           </label>
-         
+         <button onClick={this.handleClick}>Log In</button>
         </form>
       </div>
     );
