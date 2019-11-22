@@ -9,8 +9,12 @@ class LoginModal extends React.Component {
     super(props);
   }
 
-  setLogin(token) {
-    this.props.setSession(token);
+  setLogin() {
+    var token = localStorage.getItem('token');
+    var userData = localStorage.getItem('userData');
+    var userProfile = localStorage.getItem('userProfile');
+    this.props.setSession(token,userData,userProfile);
+
   }
 
   render() {

@@ -7,7 +7,7 @@ export default class CreateProfile extends React.Component {
         super(props);
         this.state = {
           profileInfo: {
-            user_id:this.props.user_id,
+            user_id: '',
             name:'',
             address:'',
             city:'',
@@ -39,17 +39,24 @@ export default class CreateProfile extends React.Component {
             headers: {
                 'Authorization': 'Bearer ' + this.props.token
             },
-            body: this.state.profileInfo
+            // body: this.state.profileInfo
         }
         axios
       .post("http://127.0.0.1:8000/api/profile", config)
       .then(res => {
         const d = res.data.data;
+        this.setState(prevState => ({
+            // token: d.token,
+            profileInfo: {
+              ...prevState.profileInfo,
+              user_id: d.profiles.user_id
+            }
+          }));
 
-        this.setState({
-          token: d.token,
-        //   user: d.user, 
-        });
+        // this.setState({
+        //   token: d.token,
+        //   profileInfo:{user_id: d.profiles.user_id} 
+        // });
         // this.props.setToken(d.token);
       });
     }

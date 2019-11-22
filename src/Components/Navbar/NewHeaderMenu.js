@@ -15,22 +15,21 @@ import {
 import LoginModal from "../Modal/UpdatedModal";
 
 class HeaderMenuNav extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state={
-          isOpen: false
-        }
-        this.updateState=this.updateState.bind(this);
-      }
-      updateState(){
-        const [isOpen, setIsOpen] = useState(false);
-        const toggle = () => setIsOpen(!this.state.isOpen);
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false
+    };
+    this.updateState = this.updateState.bind(this);
+  }
+  updateState() {
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => setIsOpen(!this.state.isOpen);
+  }
 
-
-    render() {
-        return ( 
-        <div>
+  render() {
+    return (
+      <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">BangAChain</NavbarBrand>
           <NavbarToggler onClick={this.updateState} />
@@ -45,19 +44,19 @@ class HeaderMenuNav extends React.Component {
                 </NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-            
-                <LoginModal setSession={this.props.setSession} setLogin={this.props.setLogin} getToken={this.props.getToken} parentState={this.props.parentState}
-                         
-              />
+                <LoginModal
+                  setSession={this.props.setSession}
+                  setLogin={this.props.setLogin}
+                  getToken={this.props.getToken}
+                  parentState={this.props.parentState}
+                />
               </UncontrolledDropdown>
             </Nav>
           </Collapse>
         </Navbar>
-        
       </div>
-        );
-      }
-
+    );
+  }
 }
 
 export default HeaderMenuNav;
