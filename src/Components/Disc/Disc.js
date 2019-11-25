@@ -11,10 +11,12 @@ export default class CreateDisc extends React.Component {
         speed: "",
         turn: "",
         fade: "",
-        glide: ""
+        glide: "",
+        brand_id: "",
+        plastic_id: "",
       },
-      brands: [],
-      plastics: [],
+      brand: [],
+      plastic: [],
       admin: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -27,6 +29,8 @@ export default class CreateDisc extends React.Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
+
+    console.log(event.target)
 
     this.setState(prevState => ({
       discInfo: {
@@ -51,47 +55,69 @@ export default class CreateDisc extends React.Component {
     axios.get("http://127.0.0.1:8000/api/plastic").then(res => {
       console.log('plastic', res);
       const d = res.data.data;
-      this.setState({ plastics: d.plastics});
+      this.setState({ plastics: d.plastics}); 
     });
   }
 
   async handleClick(event) {
+    event.preventDefault();
+    // console.log(this.state)
+
     var config = {
       headers: {
         Authorization: "Bearer " + this.props.token
       }
     };
-    await axios.post("http://127.0.0.1:8000/api/disc", this.state.profileInfo, config).then(res => {
-      console.log('discdata', res);
-      const d = res.data.data;
-      this.setState(prevState => ({
-        discInfo: {
-          ...prevState.discInfo,
-          brand_id: d.disc.brand_id,
-          plastic_id: d.disc.plastic_id
-        }
-      }));
+    var discInfo = {
+        name: this.state.discInfo.name,
+        speed: this.state.discInfo.speed,
+        turn: this.state.discInfo.turn,
+        fade: this.state.discInfo.fade,
+        glide: this.state.discInfo.glide,
+        brand_id: this.state.discInfo.brand_id,
+        plastic_id:this.state.discInfo.plastic_id,
+      }
+      console.log('Disc', discInfo)
+    await axios.post("http://127.0.0.1:8000/api/disc" ,config, discInfo).then(res => {
+      
+    console.log('discdata', res);
+      
+      // const d = res.data.data;
+      // this.setState(prevState => ({
+      //   discInfo: {
+      //     ...prevState.discInfo,
+      //     brand: d.discInfo.brand,
+      //     plastic: d.discInfo.plastic
+      //   }
+      // }));
     });
   }
   render() {
     return (
       <div id="container">
         Input Disc Data
-        <form>
-          <select name="discs" dropdown="true">
+        <form onSubmit={(e) => this.handleClick(e)}>
+          <select 
+            name="brand_id" 
+            dropdown="true"
+            onChange={this.handleInputChange}
+            value={this.state.discInfo.brand_id}>
             {this.state.brands
               ? this.state.brands.map((item, key) => (
-                  <option value="list" key={key}>
+                  <option value={item.brand} key={key}>
                     {item.brand}
                   </option>
                 ))
               : null}
           </select>
           <br />
-          <select name="plastics" multiple>
+          <select 
+            name="plastic_id"
+            onChange={this.handleInputChange}
+            value={this.state.discInfo.plastic_id}>
             {this.state.plastics
               ? this.state.plastics.map((item, key) => (
-                  <option value="list" key={key}>
+                  <option value={item.plastic} key={key}>
                     {item.plastic}
                   </option>
                 ))
@@ -103,7 +129,12 @@ export default class CreateDisc extends React.Component {
           </p>
           <label>
             Name:
-            <input name="Name" type="input" onChange={this.handleInputChange} />
+            <input 
+              name="name" 
+              type="input" 
+              onChange={this.handleInputChange}
+              value = {this.state.discInfo.name}
+            />
           </label>
           <br />
           <label>
@@ -112,17 +143,28 @@ export default class CreateDisc extends React.Component {
               name="speed"
               type="input"
               onChange={this.handleInputChange}
+              value = {this.state.discInfo.speed}
             />
           </label>
           <br />
           <label>
             Turn:
-            <input name="turn" type="input" onChange={this.handleInputChange} />
+            <input 
+              name="turn" 
+              type="input" 
+              onChange={this.handleInputChange} 
+              value = {this.state.discInfo.turn}
+              />
           </label>
           <br />
           <label>
             Fade:
-            <input name="fade" type="input" onChange={this.handleInputChange} />
+            <input 
+            name="fade" 
+            type="input" 
+            onChange={this.handleInputChange} 
+            value = {this.state.discInfo.fade}
+            />
           </label>
           <br />
           <label>
@@ -131,10 +173,11 @@ export default class CreateDisc extends React.Component {
               name="glide"
               type="input"
               onChange={this.handleInputChange}
+              value = {this.state.discInfo.glide}
             />
           </label>
           <br />
-          <button onClick={e => this.handleClick(e)}>Submit</button>
+          <button type="submit" >Submit</button>
         </form>
       </div>
     );
