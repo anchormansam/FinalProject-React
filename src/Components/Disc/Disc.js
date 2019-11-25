@@ -45,7 +45,7 @@ export default class CreateDisc extends React.Component {
   }
   brandRetrieve() {
     axios.get("http://127.0.0.1:8000/api/brand").then(res => {
-      console.log('brand', res);
+      // console.log('brand', res);
       const d = res.data.data;
       this.setState({ brands: d.brands });
     });
@@ -53,7 +53,7 @@ export default class CreateDisc extends React.Component {
 
   plasticRetrieve() {
     axios.get("http://127.0.0.1:8000/api/plastic").then(res => {
-      console.log('plastic', res);
+      // console.log('plastic', res);
       const d = res.data.data;
       this.setState({ plastics: d.plastics}); 
     });
@@ -77,10 +77,10 @@ export default class CreateDisc extends React.Component {
         brand_id: this.state.discInfo.brand_id,
         plastic_id:this.state.discInfo.plastic_id,
       }
-      console.log('Disc', discInfo)
-    await axios.post("http://127.0.0.1:8000/api/disc" ,config, discInfo).then(res => {
+      // console.log('Disc', discInfo)
+    await axios.post("http://127.0.0.1:8000/api/disc", discInfo, config).then(res => {
       
-    console.log('discdata', res);
+    // console.log('discdata', res);
       
       // const d = res.data.data;
       // this.setState(prevState => ({
@@ -99,17 +99,18 @@ export default class CreateDisc extends React.Component {
         <form onSubmit={(e) => this.handleClick(e)}>
           <select 
             name="brand_id" 
-            dropdown="true"
+            dropdown=""
             onChange={this.handleInputChange}
             value={this.state.discInfo.brand_id}>
             {this.state.brands
               ? this.state.brands.map((item, key) => (
-                  <option value={item.brand} key={key}>
+                <option value={item.id} key={key}>
                     {item.brand}
                   </option>
                 ))
-              : null}
+                : null}
           </select>
+                console.log(event.dropdown)
           <br />
           <select 
             name="plastic_id"
@@ -117,7 +118,7 @@ export default class CreateDisc extends React.Component {
             value={this.state.discInfo.plastic_id}>
             {this.state.plastics
               ? this.state.plastics.map((item, key) => (
-                  <option value={item.plastic} key={key}>
+                  <option value={item.id} key={key}>
                     {item.plastic}
                   </option>
                 ))
