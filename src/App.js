@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import HeaderMenuNav from "./Components/Navbar/NewHeaderMenu";
 import CreateProfile from "./Components/Profile/Profile";
+import CreateDisc from "./Components/Disc/Disc";
 
 class App extends React.Component {
   constructor(props) {
@@ -69,6 +70,7 @@ class App extends React.Component {
           parentState={this.state}
         />
         <CreateProfile user={this.state.user} token={this.state.token} profile={this.state.profile}/>
+        <CreateDisc />  
       </React.Fragment>
     );
   }

@@ -8,10 +8,11 @@ import {
   NavItem,
   NavLink,
   UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem
 } from "reactstrap";
+import "./HeaderMenu.css";
 import LoginModal from "../Modal/UpdatedModal";
 
 class HeaderMenuNav extends React.Component {

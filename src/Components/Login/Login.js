@@ -54,7 +54,7 @@ export default class Login extends React.Component {
     return (
       <div id="container">
         <form>
-          <label>
+          <label id="text">
             Email:
             <input
               name="email"
@@ -64,7 +64,7 @@ export default class Login extends React.Component {
             />
           </label>
           <br />
-          <label>
+          <label id="text">
             Password:
             <input
               name="password"

@@ -3,116 +3,101 @@ import "./Profile.css";
 import axios from "axios";
 
 export default class CreateProfile extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          profileInfo: {
-            user_id: '',
-            name:'',
-            address:'',
-            city:'',
-            state:'',
-            zip_code:'',
-          },
-          admin: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      profileInfo: {
+        user_id: "",
+        address: "",
+        city: "",
+        state: "",
+        zip_code: ""
+      },
+      admin: false
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-      
-        }
-        this.handleInputChange = this.handleInputChange.bind(this);
-    }
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
 
-    handleInputChange(event) {
-      const target = event.target;
-      const value = target.value;
-      const name = target.name;
-  
+    this.setState(prevState => ({
+      profileInfo: {
+        ...prevState.profileInfo,
+        [name]: value
+      }
+    }));
+  }
+
+  async handleClick(event) {
+    event.preventDefault();
+
+    var config = {
+      headers: {
+        Authorization: "Bearer " + this.props.token,
+      }
+    };
+    console.log("config", config);
+    await axios.post("http://127.0.0.1:8000/api/profile", this.state.profileInfo ,config).then(res => {
+      const d = res.data.data;
       this.setState(prevState => ({
+        // token: d.token,
         profileInfo: {
           ...prevState.profileInfo,
-          [name]: value
+          // user_id: d.profiles.user_id
         }
       }));
-    }
-
-    handleClick(event){
-        var config = {
-            headers: {
-                'Authorization': 'Bearer ' + this.props.token
-            },
-            // body: this.state.profileInfo
-        }
-        axios
-      .post("http://127.0.0.1:8000/api/profile", config)
-      .then(res => {
-        const d = res.data.data;
-        this.setState(prevState => ({
-            // token: d.token,
-            profileInfo: {
-              ...prevState.profileInfo,
-              user_id: d.profiles.user_id
-            }
-          }));
-
-        // this.setState({
-        //   token: d.token,
-        //   profileInfo:{user_id: d.profiles.user_id} 
-        // });
-        // this.props.setToken(d.token);
-      });
-    }
-      render() {
-        return (
-            <div id="container">
-                Create Your Profile
-              <form>
-                <label>
-                  Name:
-                  <input
-                    name="name"
-                    type="input"
-                    onChange = {this.handleInputChange} 
-                  />
-                </label>
-                <br />
-                <label>
-                  Address:
-                  <input
-                    name="address"
-                    type="input"
-                    onChange = {this.handleInputChange} 
-                  />
-                </label>
-                <br />
-                <label>
-                  City:
-                  <input
-                    name="city"
-                    type="input"
-                    onChange = {this.handleInputChange} 
-                  />
-                </label>
-                <br />
-                <label>
-                  State:
-                  <input
-                    name="state"
-                    type="input"
-                    onChange = {this.handleInputChange} 
-                  />
-                </label>
-                <br />
-                <label>
-                  Zip Code:
-                  <input
-                    name="zip_code"
-                    type="input"
-                    onChange = {this.handleInputChange} 
-                  />
-                </label>
-                <br />
-               <button onClick={e => this.handleClick(e)}>Submit</button>
-              </form>
-            </div>
-          );
-        };
-    }
+      console.log("success", this.state);
+      // this.setState({
+      //   token: d.token,
+      //   profileInfo:{user_id: d.profiles.user_id}
+      // });
+      // this.props.setToken(d.token);
+    });
+  }
+  render() {
+    return (
+      <div id="container">
+        Create Your Profile
+        <form>
+          <label>
+            Address:
+            <input
+              name="address"
+              type="input"
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            City:
+            <input name="city" type="input" onChange={this.handleInputChange} />
+          </label>
+          <br />
+          <label>
+            State:
+            <input
+              name="state"
+              type="input"
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Zip Code:
+            <input
+              name="zip_code"
+              type="input"
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <button onClick={e => this.handleClick(e)}>Submit</button>
+        </form>
+      </div>
+    );
+  }
+}
