@@ -3,6 +3,8 @@ import "./App.css";
 import HeaderMenuNav from "./Components/Navbar/NewHeaderMenu";
 import CreateProfile from "./Components/Profile/Profile";
 import CreateDisc from "./Components/Disc/Disc";
+import AddToBag from "./Components/Bag/Add";
+import CreateBag from "./Components/Bag/Create";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,11 +17,13 @@ class App extends React.Component {
       toggleLogin: true
     };
     this.setSession = this.setSession.bind(this);
-    this.getToken = this.getToken.bind(this);
+    this.setToken = this.setToken.bind(this);
     this.setLogin = this.setLogin.bind(this);
   }
 
   setSession(token, user, profile) {
+    
+    console.log(user);
     this.setState({
       token: token,
       user: user,
@@ -30,9 +34,10 @@ class App extends React.Component {
     this.setState({ toggleLogin: !this.state.toggleLogin });
   }
   
-  getToken() {
+  setToken() {
     var tokenKey = localStorage.getItem("token");
-    var userData = localStorage.getItem("userData");
+    var userData = localStorage.getItem("user");
+    console.log(userData);
     var userProfile = localStorage.getItem("userProfile");
     
     if (tokenKey && tokenKey.length > 0) {
@@ -45,8 +50,8 @@ class App extends React.Component {
     if (userData && userData.length > 0) {
       userData = JSON.parse(userData);
     } else {
-      localStorage.setItem("userData", JSON.stringify(""));
-      userData = JSON.parse(localStorage.getItem("userData"));
+      localStorage.setItem("user", JSON.stringify(""));
+      userData = JSON.parse(localStorage.getItem("user"));
     }
 
     if (userProfile && userProfile.length > 0) {
@@ -66,11 +71,13 @@ class App extends React.Component {
         <HeaderMenuNav
           setSession={this.setSession}
           setLogin={this.setLogin}
-          getToken={this.getToken}
+          setToken={this.setToken}
           parentState={this.state}
         />
         <CreateProfile user={this.state.user} token={this.state.token} profile={this.state.profile}/>
-        <CreateDisc />  
+        <CreateDisc />
+        <CreateBag user_id={this.state.user ? this.state.user.id : 0}/>
+        <AddToBag />
       </React.Fragment>
     );
   }

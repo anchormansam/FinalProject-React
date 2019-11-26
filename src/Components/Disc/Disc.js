@@ -30,8 +30,6 @@ export default class CreateDisc extends React.Component {
     const value = target.value;
     const name = target.name;
 
-    console.log(event.target)
-
     this.setState(prevState => ({
       discInfo: {
         ...prevState.discInfo,
@@ -39,13 +37,14 @@ export default class CreateDisc extends React.Component {
       }
     }));
   }
+
   componentDidMount() {
     this.brandRetrieve();
     this.plasticRetrieve();
   }
+  
   brandRetrieve() {
     axios.get("http://127.0.0.1:8000/api/brand").then(res => {
-      // console.log('brand', res);
       const d = res.data.data;
       this.setState({ brands: d.brands });
     });
@@ -53,15 +52,12 @@ export default class CreateDisc extends React.Component {
 
   plasticRetrieve() {
     axios.get("http://127.0.0.1:8000/api/plastic").then(res => {
-      // console.log('plastic', res);
       const d = res.data.data;
       this.setState({ plastics: d.plastics}); 
     });
   }
 
   async handleClick(event) {
-    event.preventDefault();
-    // console.log(this.state)
 
     var config = {
       headers: {
@@ -77,19 +73,9 @@ export default class CreateDisc extends React.Component {
         brand_id: this.state.discInfo.brand_id,
         plastic_id:this.state.discInfo.plastic_id,
       }
-      // console.log('Disc', discInfo)
+
     await axios.post("http://127.0.0.1:8000/api/disc", discInfo, config).then(res => {
-      
-    // console.log('discdata', res);
-      
-      // const d = res.data.data;
-      // this.setState(prevState => ({
-      //   discInfo: {
-      //     ...prevState.discInfo,
-      //     brand: d.discInfo.brand,
-      //     plastic: d.discInfo.plastic
-      //   }
-      // }));
+
     });
   }
   render() {
@@ -100,8 +86,8 @@ export default class CreateDisc extends React.Component {
           <select 
             name="brand_id" 
             dropdown=""
-            onChange={this.handleInputChange}
-            value={this.state.discInfo.brand_id}>
+            onChange={this.handleInputChange}>
+            <option value={this.state.discInfo.brand_id} disabled selected>Select Brand</option>
             {this.state.brands
               ? this.state.brands.map((item, key) => (
                 <option value={item.id} key={key}>
@@ -110,12 +96,12 @@ export default class CreateDisc extends React.Component {
                 ))
                 : null}
           </select>
-                console.log(event.dropdown)
+                
           <br />
           <select 
             name="plastic_id"
-            onChange={this.handleInputChange}
-            value={this.state.discInfo.plastic_id}>
+            onChange={this.handleInputChange}>
+            <option value={this.state.discInfo.plastic_id} disabled selected>Select Plastic</option>
             {this.state.plastics
               ? this.state.plastics.map((item, key) => (
                   <option value={item.id} key={key}>
@@ -124,10 +110,7 @@ export default class CreateDisc extends React.Component {
                 ))
               : null}
           </select>
-          <p>
-            Hold down the Ctrl (windows) / Command (Mac) button to select
-            multiple options.
-          </p>
+          <br />
           <label>
             Name:
             <input 

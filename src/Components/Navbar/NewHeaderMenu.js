@@ -48,7 +48,7 @@ class HeaderMenuNav extends React.Component {
                 <LoginModal
                   setSession={this.props.setSession}
                   setLogin={this.props.setLogin}
-                  getToken={this.props.getToken}
+                  setToken={this.props.setToken}
                   parentState={this.props.parentState}
                 />
               </UncontrolledDropdown>
