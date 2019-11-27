@@ -5,6 +5,10 @@ import CreateProfile from "./Components/Profile/Profile";
 import CreateDisc from "./Components/Disc/Disc";
 import AddToBag from "./Components/Bag/Add";
 import CreateBag from "./Components/Bag/Create";
+import Jumbotron from "./Components/Jumbotron/Jumbotron";
+import JumbotronTwo from "./Components/Jumbotron/Jumbotron2";
+import JumbotronThree from "./Components/Jumbotron/Jumbotron3";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -74,10 +78,14 @@ class App extends React.Component {
           setToken={this.setToken}
           parentState={this.state}
         />
-        <CreateProfile user={this.state.user} token={this.state.token} profile={this.state.profile}/>
-        <CreateDisc />
-        <CreateBag user_id={this.state.user ? this.state.user.id : 0}/>
-        <AddToBag />
+        <Jumbotron />
+        <JumbotronTwo />
+        <JumbotronThree />
+    
+        {/* <CreateProfile user={this.state.user} token={this.state.token} profile={this.state.profile}/> */}
+        {/* <CreateDisc /> */}
+        {/* <CreateBag user_id={this.state.user ? this.state.user.id : 0}/> */}
+        {/* <AddToBag /> */}
       </React.Fragment>
     );
   }

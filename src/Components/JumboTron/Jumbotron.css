@@ -1,0 +1,7 @@
+@media (min-width: 1700px){
+
+    .jumbotron {
+        min-height: 600px;
+        margin-bottom: 0rem; 
+    }
+}

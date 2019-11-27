@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 import "./HeaderMenu.css";
 import LoginModal from "../Modal/UpdatedModal";
+import "./HeaderMenu.css";
 
 class HeaderMenuNav extends React.Component {
   constructor(props) {
@@ -24,27 +25,26 @@ class HeaderMenuNav extends React.Component {
     this.updateState = this.updateState.bind(this);
   }
   updateState() {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => setIsOpen(!this.state.isOpen);
+      this.setState({isOpen: !this.state.isOpen});
   }
 
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">BangAChain</NavbarBrand>
+        <Navbar id="navBarBackground" light expand="md">
+          <NavbarBrand href="/" id="webSiteTitle">BangAChain</NavbarBrand>
           <NavbarToggler onClick={this.updateState} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem>
-                <NavLink href="/components/">Home</NavLink>
+            <Nav className="ml-auto" navbar>
+              <NavItem >
+                <NavLink id="navLinks" href="/components/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
+                <NavLink id="navLinks" href="https://github.com/reactstrap/reactstrap">
                   GitHub
                 </NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
+              <UncontrolledDropdown nav inNavbar >
                 <LoginModal
                   setSession={this.props.setSession}
                   setLogin={this.props.setLogin}

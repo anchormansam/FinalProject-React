@@ -54,6 +54,8 @@ export default class Login extends React.Component {
     return (
       <div id="container">
         <form>
+          Please Login
+          <br />
           <label id="text">
             Email:
             <input
@@ -73,7 +75,12 @@ export default class Login extends React.Component {
               onChange={this.handleInputChange}
             />
           </label>
-         <button onClick={this.handleClick}>Log In</button>
+         <button 
+            id="login"
+            className="text-light"
+            onClick={this.handleClick}>
+                Log In
+           </button>
         </form>
       </div>
     );
