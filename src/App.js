@@ -1,13 +1,15 @@
 import React from "react";
 import "./App.css";
 import HeaderMenuNav from "./Components/Navbar/NewHeaderMenu";
-import CreateProfile from "./Components/Profile/Profile";
-import CreateDisc from "./Components/Disc/Disc";
-import AddToBag from "./Components/Bag/Add";
-import CreateBag from "./Components/Bag/Create";
+// import CreateProfile from "./Components/Profile/Profile";
+// import CreateDisc from "./Components/Disc/Disc";
+// import AddToBag from "./Components/Bag/Add";
+// import CreateBag from "./Components/Bag/Create";
 import Jumbotron from "./Components/Jumbotron/Jumbotron";
 import JumbotronTwo from "./Components/Jumbotron/Jumbotron2";
 import JumbotronThree from "./Components/Jumbotron/Jumbotron3";
+import BagviewJumbo from "./Components/Jumbotron/BagviewJumbo";
+// import BagTable from "./Components/Table/BagTable"
 
 
 class App extends React.Component {
@@ -27,7 +29,7 @@ class App extends React.Component {
 
   setSession(token, user, profile) {
     
-    console.log(user);
+  
     this.setState({
       token: token,
       user: user,
@@ -41,7 +43,6 @@ class App extends React.Component {
   setToken() {
     var tokenKey = localStorage.getItem("token");
     var userData = localStorage.getItem("user");
-    console.log(userData);
     var userProfile = localStorage.getItem("userProfile");
     
     if (tokenKey && tokenKey.length > 0) {
@@ -81,7 +82,12 @@ class App extends React.Component {
         <Jumbotron />
         <JumbotronTwo />
         <JumbotronThree />
-    
+
+        {!this.state.token ? (
+          <span></span>
+        ) : (
+          <BagviewJumbo getUser={this.state.user}/>
+        )}
         {/* <CreateProfile user={this.state.user} token={this.state.token} profile={this.state.profile}/> */}
         {/* <CreateDisc /> */}
         {/* <CreateBag user_id={this.state.user ? this.state.user.id : 0}/> */}
@@ -90,5 +96,6 @@ class App extends React.Component {
     );
   }
 }
+
 
 export default App;

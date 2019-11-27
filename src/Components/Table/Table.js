@@ -11,7 +11,7 @@ class InfoTable extends React.Component {
             <Th>Should you use it?</Th>
             <Th>Yes/No</Th>
             <Th>Why you should?</Th>
-          </Tr>
+           </Tr>
         </Thead>
         <Tbody>
           <Tr>

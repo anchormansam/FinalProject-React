@@ -7,10 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  // DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem
+  UncontrolledDropdown
 } from "reactstrap";
 import "./HeaderMenu.css";
 import LoginModal from "../Modal/UpdatedModal";
@@ -25,26 +22,45 @@ class HeaderMenuNav extends React.Component {
     this.updateState = this.updateState.bind(this);
   }
   updateState() {
-      this.setState({isOpen: !this.state.isOpen});
+    this.setState({ isOpen: !this.state.isOpen });
   }
 
   render() {
     return (
       <div>
         <Navbar id="navBarBackground" light expand="md">
-          <NavbarBrand href="/" id="webSiteTitle">BangAChain</NavbarBrand>
+          <NavbarBrand href="/" id="webSiteTitle">
+            BangAChain
+          </NavbarBrand>
           <NavbarToggler onClick={this.updateState} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem >
-                <NavLink id="navLinks" href="/components/">Home</NavLink>
+              <NavItem>
+                <NavLink id="navLinks" href="/components/">
+                  Home
+                </NavLink>
+                {!this.props.parentState.token ? (
+                  <span></span>
+                ) : (
+                  <React.Fragment>
+                    <NavLink id="navLinks" href="/">
+                      Profile
+                    </NavLink>
+                    <NavLink id="navLinks" href="/">
+                      My Bag
+                    </NavLink>
+                  </React.Fragment>
+                )}
               </NavItem>
               <NavItem>
-                <NavLink id="navLinks" href="https://github.com/reactstrap/reactstrap">
+                <NavLink
+                  id="navLinks"
+                  href="https://github.com/reactstrap/reactstrap"
+                >
                   GitHub
                 </NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar >
+              <UncontrolledDropdown nav inNavbar>
                 <LoginModal
                   setSession={this.props.setSession}
                   setLogin={this.props.setLogin}

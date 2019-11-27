@@ -58,6 +58,7 @@ export default class CreateDisc extends React.Component {
   }
 
   async handleClick(event) {
+    event.preventDefault();
 
     var config = {
       headers: {
@@ -78,6 +79,7 @@ export default class CreateDisc extends React.Component {
 
     });
   }
+  
   render() {
     return (
       <div id="container">

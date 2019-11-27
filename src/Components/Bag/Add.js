@@ -1,6 +1,7 @@
 import React from "react";
 import "./Add.css";
 import axios from "axios";
+import CreateBag from "../Bag/Create";
 
 
 export default class AddToBag extends React.Component {
@@ -10,7 +11,7 @@ export default class AddToBag extends React.Component {
           brands: [],
           plastics: [],
           discs: [],
-          mybagss: [],
+          mybags: [],
           user_id: "",
           mybags_id: "",
           discs_id: "",
@@ -22,6 +23,7 @@ export default class AddToBag extends React.Component {
         this.brandsRetrieve = this.brandsRetrieve.bind(this);
         this.plasticsRetrieve = this.plasticsRetrieve.bind(this);
         this.discsRetrieve = this.discsRetrieve.bind(this);
+        this.bagRetrieve = this.bagRetrieve.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
     
@@ -35,37 +37,42 @@ export default class AddToBag extends React.Component {
         this.brandsRetrieve();
         this.plasticsRetrieve();
         this.discsRetrieve();
-}
+        this.bagRetrieve();
+      }
       
-    brandsRetrieve() {
+      brandsRetrieve() {
         axios.get("http://127.0.0.1:8000/api/brand").then(res => {
-            console.log('brand', res);
-
+          console.log('brand', res);
+          
           const d = res.data.data;
           this.setState({ brands: d.brands });
         });
-    }
-    
-    plasticsRetrieve() {
+      }
+      
+      plasticsRetrieve() {
         axios.get("http://127.0.0.1:8000/api/plastic").then(res => {
-            console.log('plastic', res);
-
+          console.log('plastic', res);
+          
           const d = res.data.data;
           this.setState({ plastics: d.plastics}); 
         });
-    }
-
-    discsRetrieve(){
+      }
+      
+      discsRetrieve(){
         axios.get("http://127.0.0.1:8000/api/disc").then(res => {
-            const d = res.data;
-            console.log('discs', d);
-            this.setState({ discs: d}); 
-          });
-
-    }
-
-    bagRetrieve(){
-        axios.get("http://127.0.0.1:8000/api/mybag").then(res => {
+          const d = res.data;
+          console.log('discs', d);
+          this.setState({ discs: d}); 
+        });
+        
+      }
+      
+      bagRetrieve(){
+        
+        var userData = JSON.parse(localStorage.getItem("user"));
+        console.log('user ' + userData.id);
+        
+        axios.get("http://127.0.0.1:8000/api/mybag/" + userData.id).then(res => {
             const d = res.data;
             console.log('bag', d);
             this.setState({ mybags: d}); 
@@ -96,6 +103,7 @@ export default class AddToBag extends React.Component {
     render() {
         return (
           <div id="container">
+            <CreateBag />
             <p>
                 Add Disc to Bag
             </p>
@@ -147,7 +155,7 @@ export default class AddToBag extends React.Component {
             {this.state.mybags
               ? this.state.mybags.map((item, key) => (
                 <option value={item.id} key={key}>
-                    {item.mybag}
+                    {item.name}
                   </option>
                 ))
                 : null}

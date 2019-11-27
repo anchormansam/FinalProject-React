@@ -1,27 +1,35 @@
 import React from "react";
-import {Container,Row, Col} from 'react-bootstrap'
-import "./Bagviewjumbo.css";
+import { Container, Row, Col } from "react-bootstrap";
+import AddToBag from "../Bag/Add";
+import BagTable from "../Table/BagTable";
+
+import "./BagviewJumbo.css";
 
 
-class Bagviewjumbo extends React.Component {
+class BagviewJumbo extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+
   render() {
     return (
-        <div className="jumbotronTwo">
-     
-      <Container>
-        <Row>
-          <Col>
-          {/* insert layout to add disc to bag */}
-          </Col>
-          <Col>
-          {/* insert what disc are in the bag */}
-          </Col>
-        
-        </Row>
-      </Container>
-        </div>
+      <div className="BagviewJumbo">
+        <Container>
+          <Row>
+
+            <Col lg="2" className="width: auto,">
+              <AddToBag getUser={this.props.getUser}/>
+            </Col>
+            <Col>
+            <BagTable />
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }
 
-export default Bagviewjumbo;
+export default BagviewJumbo;

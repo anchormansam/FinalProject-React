@@ -1,4 +1,5 @@
 .bagviewjumbo {
-    min-height: 600px;
+    min-height: auto;
+    min-width:4rem;
     background-color: #793698;
 }

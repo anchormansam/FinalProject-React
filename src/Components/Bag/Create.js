@@ -2,6 +2,7 @@ import React from "react";
 import "./Add.css";
 import axios from "axios";
 
+
 export default class CreateBag extends React.Component {
     constructor(props) {
         super(props);

@@ -1,7 +1,5 @@
-@media (min-width: 1700px){
-
-    .jumbotron {
+.jumbotron {
         min-height: 600px;
-        margin-bottom: 0rem; 
+        margin-bottom: 0rem !important ; 
     }
-}
+
