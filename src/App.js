@@ -1,16 +1,12 @@
 import React from "react";
 import "./App.css";
 import HeaderMenuNav from "./Components/Navbar/NewHeaderMenu";
-// import CreateProfile from "./Components/Profile/Profile";
-// import CreateDisc from "./Components/Disc/Disc";
-// import AddToBag from "./Components/Bag/Add";
-// import CreateBag from "./Components/Bag/Create";
-import Jumbotron from "./Components/Jumbotron/Jumbotron";
+import JumbotronOne from "./Components/Jumbotron/Jumbotron";
 import JumbotronTwo from "./Components/Jumbotron/Jumbotron2";
 import JumbotronThree from "./Components/Jumbotron/Jumbotron3";
 import BagviewJumbo from "./Components/Jumbotron/BagviewJumbo";
-// import BagTable from "./Components/Table/BagTable"
-
+import BagTable from "./Components/Table/BagTable"
+import CreateDisc from "./Components/Disc/Disc"
 
 class App extends React.Component {
   constructor(props) {
@@ -28,8 +24,6 @@ class App extends React.Component {
   }
 
   setSession(token, user, profile) {
-    
-  
     this.setState({
       token: token,
       user: user,
@@ -39,12 +33,12 @@ class App extends React.Component {
   setLogin() {
     this.setState({ toggleLogin: !this.state.toggleLogin });
   }
-  
+
   setToken() {
     var tokenKey = localStorage.getItem("token");
     var userData = localStorage.getItem("user");
     var userProfile = localStorage.getItem("userProfile");
-    
+
     if (tokenKey && tokenKey.length > 0) {
       tokenKey = JSON.parse(tokenKey);
     } else {
@@ -65,9 +59,8 @@ class App extends React.Component {
       localStorage.setItem("userProfile", JSON.stringify(""));
       userProfile = JSON.parse(localStorage.getItem("userProfile"));
     }
-    
-    this.setSession(tokenKey, userData, userProfile);
 
+    this.setSession(tokenKey, userData, userProfile);
   }
 
   render() {
@@ -78,17 +71,29 @@ class App extends React.Component {
           setLogin={this.setLogin}
           setToken={this.setToken}
           parentState={this.state}
+          user={this.state.user}
+          token={this.state.token}
+          profile={this.state.profile}
         />
-        <Jumbotron />
+        {/* <BagviewJumbo getUser={this.state.user}/> */}
+       
+
+        <JumbotronOne />
         <JumbotronTwo />
         <JumbotronThree />
 
-        {!this.state.token ? (
+
+        {/* <CreateProfile user={this.state.user} token={this.state.token} profile={this.state.profile}/> */}
+
+        {/* <Jumbotron />
+        <JumbotronTwo />
+        <JumbotronThree /> */}
+
+        {/* {!this.state.token ? (
           <span></span>
         ) : (
           <BagviewJumbo getUser={this.state.user}/>
         )}
-        {/* <CreateProfile user={this.state.user} token={this.state.token} profile={this.state.profile}/> */}
         {/* <CreateDisc /> */}
         {/* <CreateBag user_id={this.state.user ? this.state.user.id : 0}/> */}
         {/* <AddToBag /> */}
@@ -96,6 +101,5 @@ class App extends React.Component {
     );
   }
 }
-
 
 export default App;

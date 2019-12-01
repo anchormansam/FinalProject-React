@@ -3,7 +3,7 @@ import {Container,Row, Col} from 'react-bootstrap'
 import "./Jumbotron.css";
 import InfoTable from "../Table/Table";
 
-class Jumbotron extends React.Component {
+class JumbotronOne extends React.Component {
   render() {
     return (
         <div className="jumbotron">
@@ -33,4 +33,4 @@ class Jumbotron extends React.Component {
   }
 }
 
-export default Jumbotron;
+export default JumbotronOne;

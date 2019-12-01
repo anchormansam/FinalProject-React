@@ -1,7 +1,7 @@
 import React from "react";
 import "./Add.css";
 import axios from "axios";
-import CreateBag from "../Bag/Create";
+
 
 
 export default class AddToBag extends React.Component {
@@ -15,8 +15,6 @@ export default class AddToBag extends React.Component {
           user_id: "",
           mybags_id: "",
           discs_id: "",
-          name: "",
-
         }
        
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -29,8 +27,13 @@ export default class AddToBag extends React.Component {
     
     handleInputChange(event) {
         const target = event.target;
-        // const value = target.value;
-        // const name = target.name;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+          [name]:value,
+        });
+     
     }
 
     componentDidMount() {
@@ -70,7 +73,7 @@ export default class AddToBag extends React.Component {
       bagRetrieve(){
         
         var userData = JSON.parse(localStorage.getItem("user"));
-        console.log('user ' + userData.id);
+        console.log('user ', userData);
         
         axios.get("http://127.0.0.1:8000/api/mybag/" + userData.id).then(res => {
             const d = res.data;
@@ -83,30 +86,24 @@ export default class AddToBag extends React.Component {
     async handleClick(event) {
     event.preventDefault();
         
-    var config = {
+        var config = {
           headers: {
             Authorization: "Bearer " + this.props.token
           }
         };
-        var discBagged = {
+        var discBagged = JSON.stringify({
             user_id: this.state.user_id,
             mybags_id: this.state.mybags_id,
             discs_id: this.state.discs_id,
-            name: this.state.name,
-        }
-        
-        await axios.post("http://127.0.0.1:8000/api/mybagofdiscs", discBagged, config).then(res => {
-            
         });
-    };
-   
+        console.log(discBagged)
+        await axios.post("http://127.0.0.1:8000/api/mybagofdiscs", discBagged, config).then(res => {
+          
+        });
+  }
     render() {
         return (
           <div id="container">
-            <CreateBag />
-            <p>
-                Add Disc to Bag
-            </p>
             <form onSubmit={(e) => this.handleClick(e)}>
            
             <select 

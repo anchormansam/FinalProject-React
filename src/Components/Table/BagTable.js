@@ -23,6 +23,7 @@ export default class BagTable extends React.Component {
   getTableData() {
     axios.get("http://127.0.0.1:8000/api/mybag").then(res => {
       const d = res.data.data;
+      console.log('information', d)
       this.setState({
         bagName: d.bagName,
         brand: d.brand,

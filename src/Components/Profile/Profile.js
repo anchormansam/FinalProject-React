@@ -33,7 +33,7 @@ export default class CreateProfile extends React.Component {
   }
 
   async handleClick(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
     var config = {
       headers: {
