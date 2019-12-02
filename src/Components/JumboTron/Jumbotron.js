@@ -8,8 +8,10 @@ class JumbotronOne extends React.Component {
     return (
         <div className="jumbotron">
             
+            
                 <h1>Lets Build a Bag!</h1>
-                {/* style=text-align: center; */}
+       
+                 
         
       <Container>
         <Row>
@@ -18,6 +20,7 @@ class JumbotronOne extends React.Component {
           </Col>
           <Col>
           <iframe 
+            title="video"
             width="560" 
             height="315" 
             src="https://www.youtube.com/embed/CUbsRc9zlnM" 

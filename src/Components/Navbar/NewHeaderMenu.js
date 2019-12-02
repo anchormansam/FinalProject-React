@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
+  NavItem
   // NavLink,
   // UncontrolledDropdown
 } from "reactstrap";
@@ -15,13 +15,12 @@ import "./HeaderMenu.css";
 import AddToBag from "../Bag/Add";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CreateProfile from "../Profile/Profile";
-import { Jumbotron } from "react-bootstrap";
+// import { Jumbotron } from "react-bootstrap";
 import JumbotronOne from "../Jumbotron/Jumbotron";
 import JumbotronTwo from "../Jumbotron/Jumbotron2";
 import JumbotronThree from "../Jumbotron/Jumbotron3";
 import BagviewJumbo from "../Jumbotron/BagviewJumbo";
 import CreateBag from "../Bag/Create";
-
 
 class HeaderMenuNav extends React.Component {
   constructor(props) {
@@ -40,7 +39,7 @@ class HeaderMenuNav extends React.Component {
       <Router>
         <div>
           <Navbar id="navBarBackground" light expand="md">
-            <NavbarBrand href="/" to="/" id="webSiteTitle">
+            <NavbarBrand href="/home" to="/home" id="webSiteTitle">
               BangAChain
             </NavbarBrand>
             <NavbarToggler onClick={this.updateState} />
@@ -59,34 +58,39 @@ class HeaderMenuNav extends React.Component {
                   <span></span>
                 ) : (
                   <React.Fragment>
+                    <NavItem>
+                      <Link id="navLinks" to="/"></Link>
+                    </NavItem>
 
-                <NavItem>
-                  <Link id="navLinks" to="/"></Link>
-                </NavItem>
+                    <NavItem>
+                      <Link id="navLinks" to="/home">
+                        <button type="button">Home</button>
+                      </Link>
+                    </NavItem>
 
-                <NavItem>
-                  <Link id="navLinks" to="/profile">
-                    <button type="button">Profile</button>
-                  </Link>
-                </NavItem>
-              
-                <NavItem>
-                  <Link id="navLinks" to="/createbag">
-                    <button type="button">Create and View Bag</button>
-                  </Link>
-                </NavItem>
+                    <NavItem>
+                      <Link id="navLinks" to="/profile">
+                        <button type="button">Profile</button>
+                      </Link>
+                    </NavItem>
 
-                <NavItem>
-                  <Link id="navLinks" to="/adddisc">
-                    <button type="button">Add Disc to Bag</button>
-                  </Link>
-                </NavItem>
-              
-                <NavItem>
-                  <Link id="navLinks" to="/test">
-                  <button type="button">View Disc in Bag</button>
-                  </Link>
-                </NavItem>
+                    <NavItem>
+                      <Link id="navLinks" to="/createbag">
+                        <button type="button">Create and View Bag</button>
+                      </Link>
+                    </NavItem>
+
+                    <NavItem>
+                      <Link id="navLinks" to="/adddisc">
+                        <button type="button">Add Disc to Bag</button>
+                      </Link>
+                    </NavItem>
+
+                    <NavItem>
+                      <Link id="navLinks" to="/test">
+                        <button type="button">View Disc in Bag</button>
+                      </Link>
+                    </NavItem>
                   </React.Fragment>
                 )}
               </Nav>
@@ -97,7 +101,12 @@ class HeaderMenuNav extends React.Component {
             renders the first one that matches the current URL. */}
           <Switch>
             <React.Fragment>
-              <Route path="/">  
+              <Route path="/"></Route>
+
+              <Route path="/home">
+                <JumbotronOne />
+                <JumbotronTwo />
+                <JumbotronThree />
               </Route>
 
               <Route path="/profile">
@@ -117,9 +126,8 @@ class HeaderMenuNav extends React.Component {
               </Route>
 
               <Route path="/test">
-                  <BagviewJumbo getUser={this.state.user} />
+                <BagviewJumbo getUser={this.state.user} />
               </Route>
-
             </React.Fragment>
           </Switch>
         </div>

@@ -19,6 +19,7 @@ class BagviewJumbo extends React.Component {
     }
   }
 
+  
 
   render() {
     return (

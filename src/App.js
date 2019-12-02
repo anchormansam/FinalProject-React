@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
 import HeaderMenuNav from "./Components/Navbar/NewHeaderMenu";
-import JumbotronOne from "./Components/Jumbotron/Jumbotron";
-import JumbotronTwo from "./Components/Jumbotron/Jumbotron2";
-import JumbotronThree from "./Components/Jumbotron/Jumbotron3";
-import BagviewJumbo from "./Components/Jumbotron/BagviewJumbo";
-import BagTable from "./Components/Table/BagTable"
-import CreateDisc from "./Components/Disc/Disc"
+// import JumbotronOne from "./Components/Jumbotron/Jumbotron";
+// import JumbotronTwo from "./Components/Jumbotron/Jumbotron2";
+// import JumbotronThree from "./Components/Jumbotron/Jumbotron3";
+// import BagviewJumbo from "./Components/Jumbotron/BagviewJumbo";
+// import BagTable from "./Components/Table/BagTable"
+// import CreateDisc from "./Components/Disc/Disc"
 
 class App extends React.Component {
   constructor(props) {
@@ -62,10 +62,14 @@ class App extends React.Component {
 
     this.setSession(tokenKey, userData, userProfile);
   }
+  componentDidMount(){
+    this.setToken();
+  }
 
   render() {
     return (
       <React.Fragment>
+
         <HeaderMenuNav
           setSession={this.setSession}
           setLogin={this.setLogin}
@@ -78,9 +82,7 @@ class App extends React.Component {
         {/* <BagviewJumbo getUser={this.state.user}/> */}
        
 
-        <JumbotronOne />
-        <JumbotronTwo />
-        <JumbotronThree />
+       
 
 
         {/* <CreateProfile user={this.state.user} token={this.state.token} profile={this.state.profile}/> */}

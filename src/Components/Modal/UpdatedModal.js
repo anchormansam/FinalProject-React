@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from "reactstrap";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
@@ -36,10 +36,10 @@ export default class LoginModal extends React.Component {
 
           </Button>
           <Modal isOpen={this.state.isOpen} toggle={this.updateState}>
-          <ModalHeader toggle={this.updateState}>
+          <ModalHeader  id="header" toggle={this.updateState}>
             Register Your Account
           </ModalHeader>
-          <ModalBody>
+          <ModalBody id="body">
             
             {!this.props.parentState.token ? (
               <>
@@ -59,7 +59,7 @@ export default class LoginModal extends React.Component {
 
             
           </ModalBody>
-          <ModalFooter>
+          <ModalFooter id="footer">
             <Button color="secondary" onClick={this.updateState}>
               Cancel
             </Button>

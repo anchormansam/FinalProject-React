@@ -25,10 +25,7 @@ export default class Logout extends React.Component {
         console.log("caught error:",res)
       }
     );
-
-    localStorage.setItem("token", JSON.stringify(""));
-    localStorage.setItem("user", JSON.stringify(""));
-    localStorage.setItem("profile", JSON.stringify(""));
+    localStorage.clear();
     this.props.setToken("");
     event.preventDefault();
   }
