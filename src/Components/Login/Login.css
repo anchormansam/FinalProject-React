@@ -5,4 +5,7 @@
 
 #login{
     background-color: #793698;
+    border: none;
+    border-radius: 2px;
+    margin-left: 9px;
 }

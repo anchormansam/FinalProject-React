@@ -21,6 +21,7 @@ import JumbotronTwo from "../Jumbotron/Jumbotron2";
 import JumbotronThree from "../Jumbotron/Jumbotron3";
 import BagviewJumbo from "../Jumbotron/BagviewJumbo";
 import CreateBag from "../Bag/Create";
+// import CreateDisc from "../Disc/Disc";
 
 class HeaderMenuNav extends React.Component {
   constructor(props) {
@@ -87,7 +88,7 @@ class HeaderMenuNav extends React.Component {
                     </NavItem>
 
                     <NavItem>
-                      <Link id="navLinks" to="/test">
+                      <Link id="navLinks" to="/mybagofdiscs">
                         <button type="button">View Disc in Bag</button>
                       </Link>
                     </NavItem>
@@ -104,6 +105,7 @@ class HeaderMenuNav extends React.Component {
               <Route path="/"></Route>
 
               <Route path="/home">
+                {/* <CreateDisc /> */}
                 <JumbotronOne />
                 <JumbotronTwo />
                 <JumbotronThree />
@@ -125,54 +127,13 @@ class HeaderMenuNav extends React.Component {
                 <AddToBag />
               </Route>
 
-              <Route path="/test">
+              <Route path="/mybagofdiscs">
                 <BagviewJumbo getUser={this.state.user} />
               </Route>
             </React.Fragment>
           </Switch>
         </div>
       </Router>
-
-      // <div>
-      //   <Navbar id="navBarBackground" light expand="md">
-      //     <NavbarBrand href="/" id="webSiteTitle">
-      //       BangAChain
-      //     </NavbarBrand>
-      //     <NavbarToggler onClick={this.updateState} />
-      //     <Collapse isOpen={this.state.isOpen} navbar>
-      //       <Nav className="ml-auto" navbar>
-      //         <NavItem>
-      //           <NavLink id="navLinks" href="/components/">
-      //             Home
-      //           </NavLink>
-      //           {!this.props.parentState.token ? (
-      //             <span></span>
-      //           ) : (
-      //             <React.Fragment>
-      //               <NavLink id="navLinks" href="/">
-      //                 Profile
-      //               </NavLink>
-      //               <NavLink id="navLinks" href="/">
-      //                 My Bag
-      //               </NavLink>
-      //             </React.Fragment>
-      //           )}
-
-      //         </NavItem>
-      //         <NavItem>
-      //           <NavLink
-      //             id="navLinks"
-      //             href="https://github.com/reactstrap/reactstrap"
-      //           >
-      //             GitHub
-      //           </NavLink>
-      //         </NavItem>
-      //         <UncontrolledDropdown nav inNavbar>
-      //         </UncontrolledDropdown>
-      //       </Nav>
-      //     </Collapse>
-      //   </Navbar>
-      // </div>
     );
   }
 }

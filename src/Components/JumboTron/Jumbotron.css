@@ -1,5 +1,8 @@
 .jumbotron {
-        min-height: 600px;
+        min-height: 400px;
         margin-bottom: 0rem !important ; 
     }
 
+#headerTitle{
+    font-size: 70px;
+}

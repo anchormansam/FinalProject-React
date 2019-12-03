@@ -4,9 +4,13 @@
 
  #navBarBackground{
      background-color: #d6b4e7;
-     min-height: 100px;
+     min-height: 70px;
  }
 
 #navLinks{
     color: #793698;
+}
+
+#webSiteTitle{
+    font-size: 29px;
 }

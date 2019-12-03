@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Logout from "../Logout/Logout";
@@ -36,10 +36,10 @@ export default class LoginModal extends React.Component {
 
           </Button>
           <Modal isOpen={this.state.isOpen} toggle={this.updateState}>
-          <ModalHeader  id="header" toggle={this.updateState}>
-            Register Your Account
+          <ModalHeader color="secondary" id="header" toggle={this.updateState}>
+            Welcome!
           </ModalHeader>
-          <ModalBody id="body">
+          <ModalBody className="" id="body">
             
             {!this.props.parentState.token ? (
               <>
@@ -59,11 +59,11 @@ export default class LoginModal extends React.Component {
 
             
           </ModalBody>
-          <ModalFooter id="footer">
+          {/* <ModalFooter id="footer"> */}
             <Button color="secondary" onClick={this.updateState}>
               Cancel
             </Button>
-          </ModalFooter>
+          {/* </ModalFooter> */}
         </Modal>
         </>
         ) : (

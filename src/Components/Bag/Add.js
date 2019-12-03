@@ -13,7 +13,6 @@ export default class AddToBag extends React.Component {
       user_id: "",
       mybags_id: "",
       discs_id: "",
-      isLoading: true,
       selectedDisc: "",
       selectedBrand: "",
       selectedPlastic: "",
@@ -26,7 +25,6 @@ export default class AddToBag extends React.Component {
     this.discsRetrieve = this.discsRetrieve.bind(this);
     this.bagRetrieve = this.bagRetrieve.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    // this.loading = this.loading.bind(this);
   }
 
   handleInputChange(event) {
@@ -53,7 +51,6 @@ export default class AddToBag extends React.Component {
         return "Error";
       } else {
         this.setState({
-          isLoading: false,
           brands: d.brands
         });
         return res;
@@ -63,11 +60,13 @@ export default class AddToBag extends React.Component {
 
   async plasticsRetrieve() {
     await axios.get("http://127.0.0.1:8000/api/plastic").then(res => {
+      console.log( 'plastic', res)
       const d = res.data.data;
       if (!res) {
         return "Error";
       } else {
-        this.setState({ isLoading: false, plastics: d.plastics });
+        this.setState({plastics: d.plastics });
+        console.log('plastics.d' , d.plastics)
         return res;
       }
     });
@@ -79,7 +78,7 @@ export default class AddToBag extends React.Component {
       if (!res) {
         return "Error";
       } else {
-        this.setState({ isLoading: false, discs: d });
+        this.setState({discs: d });
         return res;
       }
     });
@@ -95,7 +94,7 @@ export default class AddToBag extends React.Component {
         if (!res) {
           return "Error";
         } else {
-          this.setState({ isLoading: false, mybags: d });
+          this.setState({ mybags: d });
 
           return res;
         }
@@ -122,21 +121,14 @@ export default class AddToBag extends React.Component {
         if (!res) {
           return "Error";
         }
-        this.setState({ isLoading: false, discBagged });
+        this.setState({ discBagged });
         return res;
       });
   }
 
-  // loading = () => (
-  //   <div className={this.state.isLoaded ? "has loaded" : "is-loading"}>
-  //     LOADING
-  //   </div>
-  // );
-
   render() {
     return (
       <div id="container">
-        {/* {this.loading()} */}
         <form onSubmit={e => this.handleClick(e)}>
           <select name="selectedBrand" onChange={this.handleInputChange}>
             <option value={this.state.brands} disabled selected>
@@ -159,7 +151,7 @@ export default class AddToBag extends React.Component {
             {this.state.plastics
               ? this.state.plastics.map((item, key) => {
                 return (
-                  this.state.selectedBrand === item.brand_id ?
+                  String(this.state.selectedBrand) === String(item.brand_id) ?
                     <option value={item.id} key={key}>
                       {item.plastic}
                     </option>:

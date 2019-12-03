@@ -7,18 +7,16 @@ class JumbotronOne extends React.Component {
   render() {
     return (
         <div className="jumbotron">
-            
-            
-                <h1>Lets Build a Bag!</h1>
-       
-                 
-        
       <Container>
+       
+          <p id="headerTitle" className="text-center">Lets Build a Bag!</p>
+      
+  
         <Row>
-          <Col>
+          <Col lg={6} md={10}>
             <InfoTable />
           </Col>
-          <Col>
+          <Col lg={6} md={5}>
           <iframe 
             title="video"
             width="560" 

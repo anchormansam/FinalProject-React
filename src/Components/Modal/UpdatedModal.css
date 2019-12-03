@@ -2,6 +2,11 @@
     background-color: #793698 ;
 }
 
-#header #footer #body{
-    color: #793698
+#body{
+    background-color: #d6b4e7;
+    
+}
+
+#header{
+    background-color: #FFFFFF;
 }

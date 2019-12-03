@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import "./Jumbotron2.css";
 import Image from "react-image-resizer";
 
@@ -7,9 +7,12 @@ class JumbotronTwo extends React.Component {
   render() {
     return (
       <div className="jumbotronTwo">
-        <Container>
+       
           <Row>
-            <Col lg={4}>
+            <Col xl={1}>
+
+            </Col>
+            <Col xl={3}>
               <div>
                 <Image 
                   src="./images/blackhole.jpg" 
@@ -18,7 +21,7 @@ class JumbotronTwo extends React.Component {
                 />
               </div>
             </Col>
-            <Col lg={4}>
+            <Col xl={3}>
               <div>
                 <Image
                   src="./images/DD.jpeg"
@@ -29,7 +32,7 @@ class JumbotronTwo extends React.Component {
                 />
               </div>
             </Col>
-            <Col lg={4}>
+            <Col xl={3}>
             <div>
                 <Image
                   src="./images/flight.jpg"
@@ -40,8 +43,11 @@ class JumbotronTwo extends React.Component {
                 />
               </div>
             </Col>
+            <Col xl={2}>
+              
+              </Col>
           </Row>
-        </Container>
+      
       </div>
     );
   }

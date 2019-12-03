@@ -1,117 +1,86 @@
 import React from "react";
-import { MDBDataTable } from "mdbreact";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import axios from "axios";
- 
 
 export default class BagTable extends React.Component {
   constructor() {
     super();
     this.state = {
-      bagName: "",
-      brand: "",
-      discName: "",
-      plastic: "",
-      speed: "",
-      fade: "",
-      turn: "",
-      glide: "",
-      remove: ""
+      resData: []
     };
     this.getTableData = this.getTableData.bind(this);
-    this.createBagTable = this.createBagTable.bind(this);
-  }
-  getTableData() {
-    axios.get("http://127.0.0.1:8000/api/mybag").then(res => {
-      const d = res.data.data;
-      console.log('information', d)
-      this.setState({
-        bagName: d.bagName,
-        brand: d.brand,
-        discName: d.discName,
-        plastic: d.plastic,
-        speed: d.speed,
-        fade: d.fade,
-        turn: d.turn,
-        glide: d.glide,
-      });
-    });
+    this.handleRemoveItem = this.handleRemoveItem.bind(this);
   }
 
-  createBagTable() {
-    const data = {
-      columns: [
-        {
-          label: "Bag Name",
-          field: "bagName",
-          sort: "asc",
-          width: 100
-        },
-        {
-          label: "Brand",
-          field: "brand",
-          sort: "asc",
-          width: 100
-        },
-        {
-          label: "Disc Name",
-          field: "discName",
-          sort: "asc",
-          width: 100
-        },
-        {
-          label: "Plastic",
-          field: "plastic",
-          sort: "asc",
-          width: 100
-        },
-        {
-          label: "Speed",
-          field: "speed",
-          sort: "asc",
-          width: 10
-        },
-        {
-          label: "Turn",
-          field: "turn",
-          sort: "asc",
-          width: 10
-        },
-        {
-          label: "Fade",
-          field: "fade",
-          sort: "asc",
-          width: 10
-        },
-        {
-          label: "Glide",
-          field: "glide",
-          sort: "asc",
-          width: 10
-        },
-        {
-          label: "Remove",
-          field: "remove",
-          sort: "asc",
-          width: 10
-        }
-      ],
-      rows: [
-        {
-          bagName: "Tiger Nixon",
-          brand: "System Architect",
-          discName: "Edinburgh",
-          plastic: "61",
-          speed: "12",
-          fade: "$2",
-          turn: "$2",
-          glide: "$2",
-          remove: "maybe"
-        }
-      ]
+  async getTableData() {
+    var userData = JSON.parse(localStorage.getItem("user"));
+
+    var savedData = {
+      resData: this.state.resData
     };
+
+    await axios
+      .get("http://127.0.0.1:8000/api/mybagofdiscs/" + userData.id, savedData)
+      .then(res => {
+        console.log("information", res);
+
+        this.setState({
+          resData: res.data
+        });
+      });
+  }
+
+  async handleRemoveItem(event) {
+    await axios
+      .get("http://127.0.0.1:8000/api/deletediscs/" + event.target.id )
+      .then(res => {
+        console.log("removed", res);
+        this.getTableData();
+      });
+  }
+  
+  componentDidMount() {
+    this.getTableData();
   }
 
   render() {
-    return <MDBDataTable striped bordered small data={this.state} />;
+    return (
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>Bag Name</Th>
+            <Th>Disc Name</Th>
+            <Th>Brand</Th>
+            <Th>Plastic</Th>
+            <Th>Speed</Th>
+            <Th>Turn</Th>
+            <Th>Glide</Th>
+            <Th>Fade</Th>
+            <Th>Remove</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+
+          {this.state.resData.map((item, idx) => {
+            return (
+              <Tr key={idx}>
+                <Td>{item.mybag.name}</Td>
+                <Td>{item.discs.name}</Td>
+                <Td>{item.brand[0].brand}</Td>
+                <Td>{item.plastic[0].plastic}</Td>
+                <Td>{item.discs.speed?item.discs.speed:"0"}</Td>
+                <Td>{item.discs.turn?item.discs.turn:"0"}</Td>
+                <Td>{item.discs.glide?item.discs.glide:"0"}</Td>
+                <Td>{item.discs.fade?item.discs.fade:"0"}</Td>
+                <Td><button id={item.discs.id} className="text-dark" onClick={this.handleRemoveItem}>
+                Remove
+              </button></Td>
+              </Tr>
+            );
+          })}
+        </Tbody>
+      </Table>
+    );
   }
 }

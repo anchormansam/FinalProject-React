@@ -57,8 +57,9 @@ export default class Login extends React.Component {
           Please Login
           <br />
           <label id="text">
-            Email:
+            
             <input
+              placeholder="Email"
               name="email"
               type="input"
               checked={this.state.isLoggedIn}
@@ -67,20 +68,18 @@ export default class Login extends React.Component {
           </label>
           <br />
           <label id="text">
-            Password:
+           
             <input
+              placeholder="Password"
               name="password"
               type="input"
               value={this.state.userLoggingIn}
               onChange={this.handleInputChange}
             />
           </label>
-         <button 
-            id="login"
-            className="text-light"
-            onClick={this.handleClick}>
-                Log In
-           </button>
+          <button id="login" className="text-light" onClick={this.handleClick}>
+            Log In
+          </button>
         </form>
       </div>
     );

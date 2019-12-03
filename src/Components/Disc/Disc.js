@@ -12,6 +12,8 @@ export default class CreateDisc extends React.Component {
         turn: "",
         fade: "",
         glide: "",
+        brand: "",
+        plastic: "",
         brand_id: "",
         plastic_id: "",
       },
@@ -53,6 +55,7 @@ export default class CreateDisc extends React.Component {
   plasticRetrieve() {
     axios.get("http://127.0.0.1:8000/api/plastic").then(res => {
       const d = res.data.data;
+      console.log(res)
       this.setState({ plastics: d.plastics}); 
     });
   }
@@ -71,6 +74,8 @@ export default class CreateDisc extends React.Component {
         turn: this.state.discInfo.turn,
         fade: this.state.discInfo.fade,
         glide: this.state.discInfo.glide,
+        brand_name: this.state.discInfo.brand,
+        brand_name: this.state.discInfo.plastic,
         brand_id: this.state.discInfo.brand_id,
         plastic_id:this.state.discInfo.plastic_id,
       }
