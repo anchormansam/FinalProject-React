@@ -9,7 +9,7 @@ class JumbotronOne extends React.Component {
         <div className="jumbotron">
       <Container>
        
-          <p id="headerTitle" className="text-center">Lets Build a Bag!</p>
+          <p id="headerTitle" className="text-center">LETS BUILD A BAG!</p>
       
   
         <Row>
@@ -18,9 +18,11 @@ class JumbotronOne extends React.Component {
           </Col>
           <Col lg={6} md={5}>
           <iframe 
+            id="youtube"
             title="video"
-            width="560" 
-            height="315" 
+            // width="560" 
+            // height="315" 
+            position="relative"
             src="https://www.youtube.com/embed/CUbsRc9zlnM" 
             frameborder="0" 
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 

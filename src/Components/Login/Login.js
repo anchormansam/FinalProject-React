@@ -31,14 +31,14 @@ export default class Login extends React.Component {
 
   handleClick(event) {
     axios
-      .post("http://127.0.0.1:8000/api/login", this.state.credentials)
+      .post("https://bangachain.appspot.com/api/login", this.state.credentials)
       .then(res => {
         const d = res.data.data;
 
         this.setState({
           token: d.token,
           user: d.user,
-          profile: d.user_profile
+          profile: d.user.profile[0]
         });
 
         localStorage.setItem("token", JSON.stringify(this.state.token));

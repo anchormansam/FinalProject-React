@@ -1,6 +1,14 @@
 import React from "react";
 import "./Logout.css";
 import axios from "axios";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem
+} from "reactstrap";
 
 export default class Logout extends React.Component {
   constructor(props) {
@@ -13,16 +21,16 @@ export default class Logout extends React.Component {
     axios({
       url: "/logout",
       method: "get",
-      baseURL: "http://127.0.0.1:8000/api",
+      baseURL: "https://bangachain.appspot.com/api",
 
       headers: { Authorization: "Bearer " + this.props.token }
     }).then(
       res=>{
-        console.log("caught response:",res)
+        // console.log("caught response:",res)
       }
     ).catch(
       res=>{
-        console.log("caught error:",res)
+        // console.log("caught error:",res)
       }
     );
     localStorage.clear();
@@ -31,6 +39,17 @@ export default class Logout extends React.Component {
   }
 
   render() {
-    return <button onClick={this.handleClick}>Logout</button>;
+    return (
+  <NavbarBrand 
+    href="/" 
+    to="/" 
+    id="logoutTitle"
+    onClick={this.handleClick}
+  >
+      Logout
+                    
+  </NavbarBrand>
+    )
+ 
   }
 }

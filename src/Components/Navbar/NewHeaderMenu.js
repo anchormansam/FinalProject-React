@@ -6,22 +6,20 @@ import {
   NavbarBrand,
   Nav,
   NavItem
-  // NavLink,
-  // UncontrolledDropdown
 } from "reactstrap";
 import "./HeaderMenu.css";
 import LoginModal from "../Modal/UpdatedModal";
 import "./HeaderMenu.css";
-import AddToBag from "../Bag/Add";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import CreateProfile from "../Profile/Profile";
-// import { Jumbotron } from "react-bootstrap";
+
+// Feature to be added
+// import CreateProfile from "../Profile/Profile";
+
 import JumbotronOne from "../Jumbotron/Jumbotron";
 import JumbotronTwo from "../Jumbotron/Jumbotron2";
 import JumbotronThree from "../Jumbotron/Jumbotron3";
 import BagviewJumbo from "../Jumbotron/BagviewJumbo";
 import CreateBag from "../Bag/Create";
-// import CreateDisc from "../Disc/Disc";
 
 class HeaderMenuNav extends React.Component {
   constructor(props) {
@@ -60,71 +58,38 @@ class HeaderMenuNav extends React.Component {
                 ) : (
                   <React.Fragment>
                     <NavItem>
-                      <Link id="navLinks" to="/"></Link>
+                      <Link id="navLinks" to="/home"></Link>
                     </NavItem>
 
-                    <NavItem>
-                      <Link id="navLinks" to="/home">
-                        <button type="button">Home</button>
-                      </Link>
-                    </NavItem>
-
-                    <NavItem>
-                      <Link id="navLinks" to="/profile">
-                        <button type="button">Profile</button>
-                      </Link>
-                    </NavItem>
-
-                    <NavItem>
-                      <Link id="navLinks" to="/createbag">
-                        <button type="button">Create and View Bag</button>
-                      </Link>
-                    </NavItem>
-
-                    <NavItem>
-                      <Link id="navLinks" to="/adddisc">
-                        <button type="button">Add Disc to Bag</button>
-                      </Link>
-                    </NavItem>
-
-                    <NavItem>
-                      <Link id="navLinks" to="/mybagofdiscs">
-                        <button type="button">View Disc in Bag</button>
-                      </Link>
-                    </NavItem>
+                    <NavbarBrand href="/home" to="/home" id="menuTitle">
+                      Home
+                    </NavbarBrand>
+               
+                    <NavbarBrand href="/createbag" to="/createbag" id="menuTitle">
+                      Create Bag
+                    </NavbarBrand>
+                  
+                    <NavbarBrand href="/mybagofdiscs" to="/mybagofdiscs" id="menuTitle">
+                      Create and View Bag
+                    </NavbarBrand>
+                 
                   </React.Fragment>
                 )}
               </Nav>
             </Collapse>
           </Navbar>
-
-          {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
           <Switch>
             <React.Fragment>
               <Route path="/"></Route>
 
               <Route path="/home">
-                {/* <CreateDisc /> */}
                 <JumbotronOne />
                 <JumbotronTwo />
                 <JumbotronThree />
               </Route>
 
-              <Route path="/profile">
-                <CreateProfile
-                  user={this.props.user}
-                  token={this.props.token}
-                  profile={this.props.profile}
-                />
-              </Route>
-
               <Route path="/createbag">
                 <CreateBag />
-              </Route>
-
-              <Route path="/adddisc">
-                <AddToBag />
               </Route>
 
               <Route path="/mybagofdiscs">

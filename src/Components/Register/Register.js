@@ -33,7 +33,8 @@ export default class Register extends React.Component {
 
     handleClick(event){
         axios
-      .post("http://127.0.0.1:8000/api/register_new", this.state.credentials)
+      // .post("http://127.0.0.1:8000/api/register_new", this.state.credentials)
+      .post("https://bangachain.appspot.com/api/register_new", this.state.credentials)
       .then(res => {
         const d = res.data.data;
 

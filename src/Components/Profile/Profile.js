@@ -33,31 +33,31 @@ export default class CreateProfile extends React.Component {
   }
 
   async handleClick(event) {
-    // event.preventDefault();
-
     var config = {
       headers: {
-        Authorization: "Bearer " + this.props.token,
+        Authorization: "Bearer " + this.props.token
       }
     };
-    console.log("config", config);
-    await axios.post("http://127.0.0.1:8000/api/profile", this.state.profileInfo ,config).then(res => {
-      // const d = res.data.data;
-      this.setState(prevState => ({
-        // token: d.token,
-        profileInfo: {
-          ...prevState.profileInfo,
-          // user_id: d.profiles.user_id
-        }
-      }));
-      console.log("success", this.state);
-      // this.setState({
-      //   token: d.token,
-      //   profileInfo:{user_id: d.profiles.user_id}
-      // });
-      // this.props.setToken(d.token);
-    });
+    await axios
+
+      .post(
+        "https://bangachain.appspot.com/api/profile",
+        this.state.profileInfo,
+        config
+      )
+      .then(res => {
+        this.setState(prevState => ({
+          profileInfo: {
+            ...prevState.profileInfo
+          }
+        }));
+      });
   }
+
+  componentDidMount() {
+    this.setState({ profileInfo: JSON.parse(localStorage.getItem("profile")) });
+  }
+
   render() {
     return (
       <div id="container">

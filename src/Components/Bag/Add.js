@@ -45,7 +45,7 @@ export default class AddToBag extends React.Component {
   }
 
   async brandsRetrieve() {
-    await axios.get("http://127.0.0.1:8000/api/brand").then(res => {
+    await axios.get("https://bangachain.appspot.com/api/brand").then(res => {
       const d = res.data.data;
       if (!res) {
         return "Error";
@@ -59,21 +59,19 @@ export default class AddToBag extends React.Component {
   }
 
   async plasticsRetrieve() {
-    await axios.get("http://127.0.0.1:8000/api/plastic").then(res => {
-      console.log( 'plastic', res)
+    await axios.get("https://bangachain.appspot.com/api/plastic").then(res => {
       const d = res.data.data;
       if (!res) {
         return "Error";
       } else {
         this.setState({plastics: d.plastics });
-        console.log('plastics.d' , d.plastics)
         return res;
       }
     });
   }
 
   async discsRetrieve() {
-    await axios.get("http://127.0.0.1:8000/api/disc").then(res => {
+    await axios.get("https://bangachain.appspot.com/api/disc").then(res => {
       const d = res.data;
       if (!res) {
         return "Error";
@@ -88,7 +86,7 @@ export default class AddToBag extends React.Component {
     var userData = JSON.parse(localStorage.getItem("user"));
 
     await axios
-      .get("http://127.0.0.1:8000/api/mybag/" + userData.id)
+      .get("https://bangachain.appspot.com/api/mybag/" + userData.id)
       .then(res => {
         const d = res.data;
         if (!res) {
@@ -116,7 +114,7 @@ export default class AddToBag extends React.Component {
       discs_id: this.state.selectedDisc
     };
     await axios
-      .post("http://127.0.0.1:8000/api/mybagofdiscs", discBagged, config)
+      .post("https://bangachain.appspot.com/api/mybagofdiscs", discBagged, config)
       .then(res => {
         if (!res) {
           return "Error";
@@ -166,11 +164,15 @@ export default class AddToBag extends React.Component {
               Select Disc
             </option>
             {this.state.discs
-              ? this.state.discs.map((item, key) => (
+              ? this.state.discs.map((item, key) => {
+                return (
+                  String(this.state.selectedPlastic) === String(item.plastic_id) ?
                   <option value={item.id} key={key}>
                     {item.name}
-                  </option>
-                ))
+                  </option> :
+                  null
+                  );
+              })
               : null}
           </select>
           <br />

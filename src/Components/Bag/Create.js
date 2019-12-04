@@ -1,8 +1,17 @@
 import React from "react";
 import "./Add.css";
 import axios from "axios";
-import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
-import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import {
+  Col,
+  Card,
+  Button,
+  CardHeader,
+  CardFooter,
+  CardBody,
+  CardTitle,
+  CardText,
+  Row
+} from "reactstrap";
 
 export default class CreateBag extends React.Component {
   constructor(props) {
@@ -24,11 +33,12 @@ export default class CreateBag extends React.Component {
   }
 
   async handleRemoveItem(event) {
+    
+    this.componentDidMount();
+
     await axios
-      .get("http://127.0.0.1:8000/api/deletedbag/" + event.target.id)
+      .get("https://bangachain.appspot.com/api/deletedbag/" + event.target.id)
       .then(res => {
-        console.log("removed", res);
-        this.bagRetrieve();
       });
   }
 
@@ -45,25 +55,24 @@ export default class CreateBag extends React.Component {
       name: this.state.name,
       user_id: userData.id
     };
-    console.log(discBagged);
     await axios
-      .post("http://127.0.0.1:8000/api/mybag", discBagged, config)
+      .post("https://bangachain.appspot.com/api/mybag", discBagged, config)
       .then(res => {});
   }
 
   async bagRetrieve() {
     var userData = JSON.parse(localStorage.getItem("user"));
 
+    
     await axios
-      .get("http://127.0.0.1:8000/api/mybag/" + userData.id)
+
+      .get("https://bangachain.appspot.com/api/mybag/" + userData.id)
       .then(res => {
-        console.log("bag", res);
         const d = res.data;
         if (!res) {
           return "Error";
         } else {
           this.setState({ mybags: d });
-
           return res;
         }
       });
@@ -83,16 +92,43 @@ export default class CreateBag extends React.Component {
           <button type="submit">Create Bag</button>
         </form>
 
+        <Row>
         {this.state.mybags
           ? this.state.mybags.map((item, idx) => (
-              <ul key={idx}>
-                <li>{item.name}</li>
-                <button id={item.id} className="text-dark" onClick={this.handleRemoveItem}>
-                Remove
-              </button>
-              </ul>
-            ))
-          : "Please Create a Bag"}
+              <Col sm={2} >
+                <Card key={idx} >
+                  <CardHeader className="text-center" tag="h3">Bag Created</CardHeader>
+                  <CardBody>
+                    <CardTitle className="text-center" tag="h2">{item.name}</CardTitle>
+                    <CardText className="text-center">
+                      <img
+                        src="./images/bag.png"
+                        alt="disc golf bag"
+                        height="100"
+                        width="100"
+                      />
+                    </CardText>
+                  </CardBody>
+                  <CardFooter className="text-muted">
+                    <button
+                      id={item.id}
+                      className="text-dark"
+                      onClick={this.handleRemoveItem}
+                    >
+                      Remove
+                    </button>
+                    <button
+                    id={item.id}
+                    className="text-dark"
+                    >
+                      Coming Soon
+                    </button>
+                  </CardFooter>
+                </Card>
+              </Col>
+             ))
+             : "Please Create a Bag"}
+             </Row>
       </React.Fragment>
     );
   }
