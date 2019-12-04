@@ -1,6 +1,8 @@
 import React from "react";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+
+
 import axios from "axios";
 
 export default class BagTable extends React.Component {
@@ -23,8 +25,6 @@ export default class BagTable extends React.Component {
     await axios
       .get("https://bangachain.appspot.com/api/mybagofdiscs/" + userData.id, savedData)
       .then(res => {
-        console.log("information", res);
-
         this.setState({
           resData: res.data
         });
@@ -35,7 +35,6 @@ export default class BagTable extends React.Component {
     await axios
       .get("https://bangachain.appspot.com/api/deletediscs/" + event.target.id )
       .then(res => {
-        console.log("removed", res);
         this.getTableData();
       });
   }
@@ -46,7 +45,8 @@ export default class BagTable extends React.Component {
 
   render() {
     return (
-      <Table>
+      <React.Fragment>
+          <Table>
         <Thead>
           <Tr>
             <Th>Bag Name</Th>
@@ -81,6 +81,8 @@ export default class BagTable extends React.Component {
           })}
         </Tbody>
       </Table>
+      </React.Fragment>
     );
+  
   }
 }

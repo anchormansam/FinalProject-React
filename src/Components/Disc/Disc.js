@@ -55,7 +55,6 @@ export default class CreateDisc extends React.Component {
   plasticRetrieve() {
     axios.get("https://bangachain.appspot.com/api/plastic").then(res => {
       const d = res.data.data;
-      console.log(res)
       this.setState({ plastics: d.plastics}); 
     });
   }
@@ -80,7 +79,8 @@ export default class CreateDisc extends React.Component {
         plastic_id:this.state.discInfo.plastic_id,
       }
 
-    await axios.post("https://bangachain.appspot.com/api/disc", discInfo, config).then(res => {
+      await axios.post("https://bangachain.appspot.com/api/disc", discInfo, config)
+                 .then(res => {
 
     });
   }

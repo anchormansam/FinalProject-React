@@ -33,7 +33,7 @@ export default class CreateProfile extends React.Component {
   }
 
   async handleClick(event) {
-    // event.preventDefault();
+    
 
     var config = {
       headers: {
@@ -42,20 +42,12 @@ export default class CreateProfile extends React.Component {
     };
     console.log("config", config);
     await axios.post("https://bangachain.appspot.com/api/profile", this.state.profileInfo ,config).then(res => {
-      // const d = res.data.data;
+      
       this.setState(prevState => ({
-        // token: d.token,
         profileInfo: {
           ...prevState.profileInfo,
-          // user_id: d.profiles.user_id
         }
       }));
-      console.log("success", this.state);
-      // this.setState({
-      //   token: d.token,
-      //   profileInfo:{user_id: d.profiles.user_id}
-      // });
-      // this.props.setToken(d.token);
     });
   }
   render() {

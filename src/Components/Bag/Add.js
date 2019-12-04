@@ -60,13 +60,11 @@ export default class AddToBag extends React.Component {
 
   async plasticsRetrieve() {
     await axios.get("https://bangachain.appspot.com/api/plastic").then(res => {
-      console.log( 'plastic', res)
       const d = res.data.data;
       if (!res) {
         return "Error";
       } else {
         this.setState({plastics: d.plastics });
-        console.log('plastics.d' , d.plastics)
         return res;
       }
     });
@@ -166,11 +164,15 @@ export default class AddToBag extends React.Component {
               Select Disc
             </option>
             {this.state.discs
-              ? this.state.discs.map((item, key) => (
+              ? this.state.discs.map((item, key) => {
+                return (
+                  String(this.state.selectedPlastic) === String(item.plastic_id) ?
                   <option value={item.id} key={key}>
                     {item.name}
-                  </option>
-                ))
+                  </option> :
+                  null
+                  );
+              })
               : null}
           </select>
           <br />

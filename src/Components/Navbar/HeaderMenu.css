@@ -1,7 +1,11 @@
- #webSiteTitle{
+#webSiteTitle{
     color: #793698;
+    font-size: 29px;
  }
-
+#menuTitle{
+    color: #793698;
+    font-size: 18px;
+}
  #navBarBackground{
      background-color: #d6b4e7;
      min-height: 70px;
@@ -9,8 +13,4 @@
 
 #navLinks{
     color: #793698;
-}
-
-#webSiteTitle{
-    font-size: 29px;
 }

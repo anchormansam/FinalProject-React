@@ -38,7 +38,7 @@ export default class Login extends React.Component {
         this.setState({
           token: d.token,
           user: d.user,
-          profile: d.user_profile
+          profile: d.user.profile[0]
         });
 
         localStorage.setItem("token", JSON.stringify(this.state.token));

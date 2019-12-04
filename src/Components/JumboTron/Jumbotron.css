@@ -1,8 +1,40 @@
 .jumbotron {
-        min-height: 400px;
-        margin-bottom: 0rem !important ; 
-    }
+    min-height: 450px;
+    margin-bottom: 0rem !important ; 
+}
 
 #headerTitle{
-    font-size: 70px;
+font-size: 70px;
 }
+
+#youtube{
+width: 30vw;
+height: 100%; 
+}
+
+@media screen and (max-width: 902px) {
+#youtube{
+    width: 55vw;
+    height: 30vw; 
+ }
+} 
+@media screen and (max-width: 639px) {
+#youtube{
+    width: 80vw;
+    height: 45vw; 
+ }
+} 
+
+@media screen and (max-width: 480px) {
+#youtube{
+    width: 80vw;
+    height: 45vw; 
+ }
+} 
+@media screen and (max-width: 380px) {
+#youtube{
+    justify-content: center;
+    width: 84vw;
+    height: 47vw; 
+ }
+} 
