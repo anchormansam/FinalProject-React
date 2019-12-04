@@ -25,7 +25,7 @@ export default class CreateBag extends React.Component {
 
   async handleRemoveItem(event) {
     await axios
-      .get("http://127.0.0.1:8000/api/deletedbag/" + event.target.id)
+      .get("https://bangachain.appspot.com/api/deletedbag/" + event.target.id)
       .then(res => {
         console.log("removed", res);
         this.bagRetrieve();
@@ -47,7 +47,7 @@ export default class CreateBag extends React.Component {
     };
     console.log(discBagged);
     await axios
-      .post("http://127.0.0.1:8000/api/mybag", discBagged, config)
+      .post("https://bangachain.appspot.com/api/mybag", discBagged, config)
       .then(res => {});
   }
 
@@ -55,7 +55,7 @@ export default class CreateBag extends React.Component {
     var userData = JSON.parse(localStorage.getItem("user"));
 
     await axios
-      .get("http://127.0.0.1:8000/api/mybag/" + userData.id)
+      .get("https://bangachain.appspot.com/api/mybag/" + userData.id)
       .then(res => {
         console.log("bag", res);
         const d = res.data;

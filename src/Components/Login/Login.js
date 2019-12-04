@@ -31,7 +31,7 @@ export default class Login extends React.Component {
 
   handleClick(event) {
     axios
-      .post("http://127.0.0.1:8000/api/login", this.state.credentials)
+      .post("https://bangachain.appspot.com/api/login", this.state.credentials)
       .then(res => {
         const d = res.data.data;
 

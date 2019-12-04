@@ -41,7 +41,7 @@ export default class CreateProfile extends React.Component {
       }
     };
     console.log("config", config);
-    await axios.post("http://127.0.0.1:8000/api/profile", this.state.profileInfo ,config).then(res => {
+    await axios.post("https://bangachain.appspot.com/api/profile", this.state.profileInfo ,config).then(res => {
       // const d = res.data.data;
       this.setState(prevState => ({
         // token: d.token,

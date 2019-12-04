@@ -21,7 +21,7 @@ export default class BagTable extends React.Component {
     };
 
     await axios
-      .get("http://127.0.0.1:8000/api/mybagofdiscs/" + userData.id, savedData)
+      .get("https://bangachain.appspot.com/api/mybagofdiscs/" + userData.id, savedData)
       .then(res => {
         console.log("information", res);
 
@@ -33,7 +33,7 @@ export default class BagTable extends React.Component {
 
   async handleRemoveItem(event) {
     await axios
-      .get("http://127.0.0.1:8000/api/deletediscs/" + event.target.id )
+      .get("https://bangachain.appspot.com/api/deletediscs/" + event.target.id )
       .then(res => {
         console.log("removed", res);
         this.getTableData();

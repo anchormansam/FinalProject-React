@@ -15,7 +15,7 @@ export default class UserCard extends React.Component {
   }
 
   getUserInfo() {
-    axios.get('http://127.0.0.1:8000/api/user',{headers:{Authorization:"Bearer "+this.props.token}})
+    axios.get('https://bangachain.appspot.com/api/user',{headers:{Authorization:"Bearer "+this.props.token}})
     .then(res => {
       console.log(res)
       this.setState({

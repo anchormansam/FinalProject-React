@@ -13,7 +13,7 @@ export default class Logout extends React.Component {
     axios({
       url: "/logout",
       method: "get",
-      baseURL: "http://127.0.0.1:8000/api",
+      baseURL: "https://bangachain.appspot.com/api",
 
       headers: { Authorization: "Bearer " + this.props.token }
     }).then(

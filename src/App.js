@@ -1,12 +1,7 @@
 import React from "react";
 import "./App.css";
 import HeaderMenuNav from "./Components/Navbar/NewHeaderMenu";
-// import JumbotronOne from "./Components/Jumbotron/Jumbotron";
-// import JumbotronTwo from "./Components/Jumbotron/Jumbotron2";
-// import JumbotronThree from "./Components/Jumbotron/Jumbotron3";
-// import BagviewJumbo from "./Components/Jumbotron/BagviewJumbo";
-// import BagTable from "./Components/Table/BagTable"
-// import CreateDisc from "./Components/Disc/Disc"
+
 
 class App extends React.Component {
   constructor(props) {
@@ -79,26 +74,6 @@ class App extends React.Component {
           token={this.state.token}
           profile={this.state.profile}
         />
-        {/* <BagviewJumbo getUser={this.state.user}/> */}
-       
-
-       
-
-
-        {/* <CreateProfile user={this.state.user} token={this.state.token} profile={this.state.profile}/> */}
-
-        {/* <Jumbotron />
-        <JumbotronTwo />
-        <JumbotronThree /> */}
-
-        {/* {!this.state.token ? (
-          <span></span>
-        ) : (
-          <BagviewJumbo getUser={this.state.user}/>
-        )}
-        {/* <CreateDisc /> */}
-        {/* <CreateBag user_id={this.state.user ? this.state.user.id : 0}/> */}
-        {/* <AddToBag /> */}
       </React.Fragment>
     );
   }
