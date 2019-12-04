@@ -1,69 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### BangAChain Build a Bag! 
 
-## Available Scripts
+### Sprint #1
 
-In the project directory, you can run:
+Start Date: 11/18/2019
+End Date: 12/4/2019
 
-### `npm start`
+### Details
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The current sprint was to build a feature for websites as a possible plugin or standalone web-app. Users are able to create an account so that they may track disc that they bag. Users may have multiples just in case a user uses a different bag to 
+practice with then a bag they would compete with. As a user they will also be allowed to delete disc out of their bag or delete the bag entirely.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Current Issues
 
-### `npm test`
+- Once a user logouts of their account they are not automaticly returned to the home screen. They are stuck viewing the         current view unless they hit the BangAChain logo on the top left of the site. 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Styling is an issue as all devices currently do not have a fluid view of all features. This means mobile users have a more
+  compressed view and there is a lot of data on the screen. It currently looks better on desktop view however when viewing 
+  a users bag and disc that is in it looks fine. 
+  
+### Sprint #2
 
-### `npm run build`
+Start Date: 12/9/2019
+End Date: 12/23/2019
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Sprint Goals:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Finish bagged logged items in Kanban 
+    - User has the option to create profile but not view it. The .js file was taken out but the component exsits.
+    - User is able to scroll up and down on the mobile app to allow for smoother transitions. 
+    - User is able to upload an image of thier actual bag
+    - User is able to upload an image of their actual discs in their bag
+    - User is able to update the name of their bag
+    - User is able to update their profile information excluding their email. 
+    - New users can view disc. 
+    - New users can learn about disc golf. 
+    - Users can learn how to develope their current skills. 
+ 
+### Sprint #3
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Start Date: 01/06/2020
+End Date: 01/20/2020
 
-### `npm run eject`
+### Sprint Goals: 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- User is able to find disc based off of current discs they throw
+- User is able to Share thier bag on Social Media platforms
+- User is able to watch a short video of what the sites Build A Bag feature does
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Future Site Goals
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The plan is to make this site a full featured ecommerce site. This will allow the client to sell disc online as well as 
+at his establishment. Users will be able to see what disc they need for their bag then shop with the retailer to get a better
+understanding of what disc they need for their bag. The client would love to see his site be used to pupblish live streams that users would pay a subscription fee to see. 
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+@Sam Wheeling developer
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+@Bang A Chain Client
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# FinalProject-React
